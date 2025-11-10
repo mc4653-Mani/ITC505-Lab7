@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mad Lib Generator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Fun Mad Lib Generator</h1>
+
+  <form id="madlibForm">
+    <label>Noun: <input type="text" id="noun" required></label><br>
+    <label>Adjective: <input type="text" id="adjective" required></label><br>
+    <label>Verb: <input type="text" id="verb" required></label><br>
+    <label>Place: <input type="text" id="place" required></label><br>
+    <label>Plural Noun: <input type="text" id="pluralnoun" required></label><br>
+    <button type="submit">Create Story</button>
+  </form>
+
+  <div id="storyResult" class="story-box"></div>
+
+  <footer>
+    <p>Last updated: <span id="lastModified"></span></p>
+  </footer>
+
+  <script>
+    // Footer time
+    var x = document.lastModified;
+    document.getElementById("lastModified").textContent = x;
+
+    // Mad Lib logic
+    document.getElementById("madlibForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const noun = document.getElementById("noun").value;
+      const adjective = document.getElementById("adjective").value;
+      const verb = document.getElementById("verb").value;
+      const place = document.getElementById("place").value;
+      const pluralnoun = document.getElementById("pluralnoun").value;
+
+      const story = `
+        Once upon a time, a ${adjective} ${noun} loved to ${verb} in ${place}.
+        Every day, it met many ${pluralnoun}, and together they had wonderful adventures!
+      `;
+
+      document.getElementById("storyResult").innerHTML =
+        "<h2>Your Story:</h2><p>" + story + "</p>";
+    });
+  </script>
+</body>
+</html>
